@@ -1,0 +1,2 @@
+build:clang_conf --cxxopt=-std=c++17
+build:clang_conf --cxxopt=-O2
