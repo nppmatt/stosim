@@ -1,0 +1,10 @@
+cc_library(
+    name = "stosim_lib",
+    hdrs = ["src/include/mcrandom.hpp"],
+)
+
+cc_binary(
+    name = "test_uniform",
+    srcs = ["src/test_uniform.cpp"],
+    deps = [":stosim_lib"],
+)
