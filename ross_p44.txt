@@ -1,0 +1,13 @@
+P5: True integral of exp^(x + x^2) over [-2,2]: 93.1628
+Trapezoid Rule Approximation (n = 100): 93.4344
+Monte Carlo Approximation (n = 100): 93.8644
+
+P7: True integral of exp^(-x^2) over [0,inf.): 1.77245
+Monte Carlo Approximation (n = 100): 1.78304
+
+P12: Expectations for U(0,1) for n = 100, 1000, 10000
+0.521551
+0.478843
+0.501298
+Human intuition says it's 0.5 or (1/2).
+
