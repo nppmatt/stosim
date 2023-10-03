@@ -1,6 +1,6 @@
-/* stosim/src/include/mcrandom.hpp */
-#ifndef STOSIM_INCLUDE_MCRANDOM_H_
-#define STOSIM_INCLUDE_MCRANDOM_H_
+/* stosim/src/include/mc_random.hpp */
+#ifndef STOSIM_INCLUDE_MC_RANDOM_H_
+#define STOSIM_INCLUDE_MC_RANDOM_H_
 
 #include <cstdint>
 #include <vector>
@@ -169,5 +169,5 @@ namespace mcr {
 }
 
 #endif
-/* stosim/src/include/mcrandom.hpp */
+/* stosim/src/include/mc_random.hpp */
 
