@@ -1,7 +1,7 @@
 cc_library(
     name = "stosim_lib",
     hdrs = [
-        "src/include/mcrandom.hpp",
+        "src/include/mc_random.hpp",
         "src/include/numeric.hpp",
     ],
 )

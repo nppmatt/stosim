@@ -1,4 +1,4 @@
-#include "include/mcrandom.hpp"
+#include "include/mc_random.hpp"
 
 #include <iostream>
 
