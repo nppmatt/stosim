@@ -4,7 +4,6 @@
 
 #include <cstdint>
 #include <vector>
-#include <algorithm>
 
 /* The random number library for stosim. Intended to hold generators and methods for creating pseudorandom numbers to be
  * used for Monte Carlo methods.
