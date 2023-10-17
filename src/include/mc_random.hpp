@@ -4,6 +4,7 @@
 
 #include <cstdint>
 #include <vector>
+#include <cmath>
 
 /* The random number library for stosim. Intended to hold generators and methods for creating pseudorandom numbers to be
  * used for Monte Carlo methods.
@@ -23,6 +24,8 @@ namespace mcr {
      * ability to perform mod(2^64) on-the-fly by calculating overflow or wrap-around for unsigned 64-bit integers.
      *
      * Our algorithm assumes the usage of a "normal" (Intel/AMD) CPU with SSE2 support (post-year 2000 / Pentium 4).
+     *
+     *  TODO: Add tests for custom seed constuctor. (2023/10/17)
      */
     class LinearCongruential {
         private:
@@ -56,6 +59,8 @@ namespace mcr {
      *  - Grab a pseudorandom number from the Linear Congruential Generator.
      *  - Normalize the LCG output by dividing with the largest 64-bit integer (both already explicit-cast to double).
      *  - Store as uniformValue.
+     *
+     *  TODO: Add tests for custom seed constuctor. (2023/10/17)
      */
     class Uniform : public LinearCongruential {
         private:
@@ -68,6 +73,7 @@ namespace mcr {
             }
 
             explicit Uniform(uint64_t customSeed) {
+                seed = customSeed;
                 uniformValue = normalize(value);
             }
 
@@ -86,15 +92,37 @@ namespace mcr {
      *  - Grab Uniform random numbers as needed.
      *  - Transform the UPRNG into desired output with unique member function.
      *  - Store as protected variable, output via next() iteration.
+     *
+     *  TODO: Also split this off into its own header. Dependencies getting twisted. (2023/10/17)
+     *  TODO: Probably should review copy/move semantics for library. (2023/10/17)
+     *  TODO: Add tests for custom seed constuctor. (2023/10/17)
      */
     class Exponential : public Uniform {
         private:
-            constexpr double exponentialTransform(double )
+            constexpr double exponentialTransform(double lambda) {
+                return -log(1 - uniformValue) / lambda;
+            }
         protected:
+            double lambda;
             double exponentialValue;
         public:
-            Exponential(double lambda) {
-                exponentialValue = exponentialTransform(value);
+            explicit Exponential(double inputParam) {
+                lambda = inputParam;
+                exponentialValue = exponentialTransform(lambda);
+            }
+
+            explicit Exponential(double inputParam, uint64_t customSeed) {
+                seed = customSeed;
+                lambda = inputParam;
+                exponentialValue = exponentialTransform(lambda);
+            }
+
+            constexpr double getValue() { return exponentialValue; }
+
+            constexpr double next() {
+                Uniform::next();
+                exponentialValue = exponentialTransform(lambda);
+                return exponentialValue;
             }
     };
 

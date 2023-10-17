@@ -19,7 +19,7 @@ cc_binary(
 )
 
 cc_binary(
-    name = "ross",
-    srcs = ["src/ross_p44.cpp"],
+    name = "hw",
+    srcs = ["src/oct_17.cpp"],
     deps = [":stosim_lib"],
 )
