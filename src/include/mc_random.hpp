@@ -53,10 +53,10 @@ namespace mcr {
     };
 
     /* Our scheme for simulating a Uniform Random Variable U ~ U(1,0):
-    *   - Grab a pseudorandom number from the Linear Congruential Generator.
-    *   - Normalize the LCG output by dividing with the largest 64-bit integer (both already explicit-cast to double).
-    *   - Store as uniformValue.
-    */
+     *  - Grab a pseudorandom number from the Linear Congruential Generator.
+     *  - Normalize the LCG output by dividing with the largest 64-bit integer (both already explicit-cast to double).
+     *  - Store as uniformValue.
+     */
     class Uniform : public LinearCongruential {
         private:
             constexpr double normalize(uint64_t value) { return double(value) / double(UINT64_MAX); }
@@ -77,6 +77,24 @@ namespace mcr {
                 LinearCongruential::next();
                 uniformValue = normalize(value);
                 return uniformValue;
+            }
+    };
+
+    /* Generator for Exponential random variable with parameter lambda.
+     * Builds upon the Uniform generator using inversion.
+     * General scheme for random variable generation is:
+     *  - Grab Uniform random numbers as needed.
+     *  - Transform the UPRNG into desired output with unique member function.
+     *  - Store as protected variable, output via next() iteration.
+     */
+    class Exponential : public Uniform {
+        private:
+            constexpr double exponentialTransform(double )
+        protected:
+            double exponentialValue;
+        public:
+            Exponential(double lambda) {
+                exponentialValue = exponentialTransform(value);
             }
     };
 

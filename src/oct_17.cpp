@@ -12,17 +12,10 @@ using mcr::Uniform;
 using std::cout;
 using std::endl;
 
-void p5_17() {
-    std::function<double(double)> densityFunction = [](double x) {
-        return 0.25 + 2 * pow(x, 3) + 1.25 * pow(x, 4);
-    };
+void p5_27() {
 }
 
 int main() {
-    p5_17();
-    //p5_19();
-    //p5_20();
-    //p5_23();
     //p5_27();
     //p5_29(); // Simulate avg. number of people at event arriving by bus.
     //p5_30();
