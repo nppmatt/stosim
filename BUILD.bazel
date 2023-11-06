@@ -20,6 +20,6 @@ cc_binary(
 
 cc_binary(
     name = "hw",
-    srcs = ["src/oct_17.cpp"],
+    srcs = ["src/oct31.cpp"],
     deps = [":stosim_lib"],
 )
