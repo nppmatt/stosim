@@ -22,6 +22,6 @@ cc_binary(
 
 cc_binary(
     name = "hw",
-    srcs = ["src/nov7.cpp"],
+    srcs = ["src/p7_8.cpp"],
     deps = [":stosim_lib"],
 )

@@ -14,8 +14,10 @@ namespace mcr {
      *  - Transform the UPRNG into desired output with unique member function.
      *  - Store as protected variable, output via next() iteration.
      *
-     *  TODO: Also split this off into its own header. Dependencies getting twisted. (2023/10/17)
-     *  TODO: Probably should review copy/move semantics for library. (2023/10/17)
+     *  TODO: Also split this off into its own header. Dependencies getting
+     *  twisted. (2023/10/17)
+     *  TODO: Probably should review copy/move semantics for library.
+     *  (2023/10/17)
      *  TODO: Add tests for custom seed constuctor. (2023/10/17)
      */
     class Exponential : public Uniform {
