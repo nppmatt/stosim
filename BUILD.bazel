@@ -2,24 +2,25 @@ cc_library(
     name = "stosim_lib",
     hdrs = [
         "src/include/mc_random.hpp",
+        "src/include/mc_random/LinearCongruential.hpp",
+        "src/include/mc_random/Uniform.hpp",
+        "src/include/mc_random/Exponential.hpp",
+        "src/include/mc_random/IntegrateMonteCarlo.hpp",
         "src/include/numeric.hpp",
     ],
 )
 
 cc_binary(
-    name = "test_uniform",
-    srcs = ["src/test_uniform.cpp"],
-    deps = [":stosim_lib"],
-)
-
-cc_binary(
-    name = "test_trapezoid",
-    srcs = ["src/test_trapezoid.cpp"],
+    name = "test",
+    srcs = [
+        "src/test/test_uniform.cpp",
+        "src/test/test_trapezoid.cpp",
+    ],
     deps = [":stosim_lib"],
 )
 
 cc_binary(
     name = "hw",
-    srcs = ["src/oct31.cpp"],
+    srcs = ["src/nov7.cpp"],
     deps = [":stosim_lib"],
 )

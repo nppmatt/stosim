@@ -9,8 +9,7 @@ namespace mcr {
      * of our library.
      *
      * Multiplier is based on Donald Knuth's choice for the MMIX virtual machine as its random properties have undergone
-     * years of scrutiny and real-world usage (notably in musl libc) and it has a provably long period (Art of Computer Programming Vol. 2
-     * Ch. 3) relative to our assumed word size of 64-bits.
+     * years of scrutiny and real-world usage (notably in musl libc) and it has a provably long period (Art of Computer Programming Vol. 2 Ch. 3) relative to our assumed word size of 64-bits.
      *
      * The increment differs from Knuth's choice, and is simply adding 1. This does not change randomness relative to
      * the original by one bit and keeps things simple.
