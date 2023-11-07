@@ -2,7 +2,16 @@
 
 #include "include/mc_random.hpp"
 
+#include <cstdint>
+
 void p7_8() {
+    const double s1_rate = 4.0;
+    const double s2_rate = 3.0;
+    mcr::Exponential s1_service = mcr::Exponential(s1_rate);
+    mcr::Exponential s2_service = mcr::Exponential(s2_rate);
+
+    const double arrivalRate = 6.0;
+    const uint64_t numArrivals = 1000;
 }
 
 int main() {
