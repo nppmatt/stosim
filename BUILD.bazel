@@ -6,6 +6,7 @@ cc_library(
         "src/include/mc_random/Uniform.hpp",
         "src/include/mc_random/Exponential.hpp",
         "src/include/mc_random/IntegrateMonteCarlo.hpp",
+        "src/include/mc_random/Poisson.hpp",
         "src/include/numeric.hpp",
     ],
 )

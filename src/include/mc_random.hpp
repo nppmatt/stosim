@@ -6,6 +6,7 @@
 #include "mc_random/Uniform.hpp"
 #include "mc_random/Exponential.hpp"
 #include "mc_random/IntegrateMonteCarlo.hpp"
+#include "mc_random/Poisson.hpp"
 
 #endif
 /* stosim/src/include/mc_random.hpp */
