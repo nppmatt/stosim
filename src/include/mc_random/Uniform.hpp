@@ -17,24 +17,24 @@ namespace mcr {
                 return double(LCGValue) / double(UINT64_MAX);
             }
         protected:
-            LinearCongruential LCG;
+            LinearCongruential lcgGenerator;
             double uniformValue;
         public:
             Uniform()
-            :   LCG( LinearCongruential() ),
-                uniformValue( normalize(LCG.getValue()) )
+            :   lcgGenerator( LinearCongruential() ),
+                uniformValue( normalize(lcgGenerator.getValue()) )
             {}
 
             Uniform(uint64_t customSeed)
-            :   LCG( LinearCongruential(customSeed) ),
-                uniformValue( normalize(LCG.getValue()) )
+            :   lcgGenerator( LinearCongruential(customSeed) ),
+                uniformValue( normalize(lcgGenerator.getValue()) )
             {}
 
             constexpr double getValue() { return uniformValue; }
 
             constexpr double next() {
-                LCG.next();
-                uniformValue = normalize(LCG.getValue());
+                lcgGenerator.next();
+                uniformValue = normalize(lcgGenerator.getValue());
                 return uniformValue;
             }
     };
