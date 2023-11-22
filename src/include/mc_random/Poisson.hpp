@@ -5,6 +5,12 @@
 #include "Exponential.hpp"
 
 namespace mcr {
+    /* Generator for the endpoint of a homogenous Poisson process with 
+     * parameter lambda. Is somewhat limited when it comes to path generation,
+     * but it's here for any niche cases where the path is not needed.
+     * Scheme for generation is to accumulate exponentially distributed
+     * deltas until the parameter is reached.
+     */
     class Poisson {
         private:
             double genPoisson() {
@@ -24,15 +30,21 @@ namespace mcr {
         public:
             Poisson() = default;
 
+            Poisson(Exponential inputGenerator, double inputParam)
+            :   expGenerator(inputGenerator),
+                lambda(inputParam),
+                poissonValue( genPoisson() )
+            {}
+
             Poisson(double inputParam)
-            :   lambda(inputParam),
-                expGenerator( Exponential(lambda) ),
+            :   expGenerator( Exponential(inputParam) ),
+                lambda(inputParam),
                 poissonValue( genPoisson() )
             {}
 
             Poisson(double inputParam, uint64_t customSeed)
-            :   lambda(inputParam),
-                expGenerator( Exponential(lambda, customSeed) ),
+            :   expGenerator( Exponential(inputParam, customSeed) ),
+                lambda(inputParam),
                 poissonValue( genPoisson() )
             {}
 

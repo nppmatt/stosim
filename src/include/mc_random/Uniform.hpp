@@ -25,6 +25,11 @@ namespace mcr {
                 uniformValue( normalize(lcgGenerator.getValue()) )
             {}
 
+            Uniform(LinearCongruential inputGenerator)
+            :   lcgGenerator(inputGenerator),
+                uniformValue( normalize(lcgGenerator.getValue()) )
+            {}
+
             Uniform(uint64_t customSeed)
             :   lcgGenerator( LinearCongruential(customSeed) ),
                 uniformValue( normalize(lcgGenerator.getValue()) )

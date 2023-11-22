@@ -26,6 +26,12 @@ namespace mcr {
         public:
             Exponential() = default;
 
+            Exponential(Uniform inputGenerator, double inputParam)
+            :   uniformGenerator(inputGenerator),
+                lambda(inputParam),
+                exponentialValue( exponentialTransform(lambda) )
+            {}
+
             Exponential(double inputParam)
             :   uniformGenerator( Uniform() ),
                 lambda(inputParam),
