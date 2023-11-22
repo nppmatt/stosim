@@ -16,6 +16,8 @@ namespace mcr {
      */
     class Exponential {
         private:
+            Exponential() = default;
+
             constexpr double exponentialTransform(double lambda) {
                 return -log(1 - uniformGenerator.getValue()) / lambda;
             }
@@ -24,8 +26,6 @@ namespace mcr {
             double lambda;
             double exponentialValue;
         public:
-            Exponential() = default;
-
             Exponential(Uniform inputGenerator, double inputParam)
             :   uniformGenerator(inputGenerator),
                 lambda(inputParam),

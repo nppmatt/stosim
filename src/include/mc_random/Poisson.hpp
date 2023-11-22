@@ -13,6 +13,8 @@ namespace mcr {
      */
     class Poisson {
         private:
+            Poisson() = default;
+
             double genPoisson() {
                 uint64_t candidate = 0;
 
@@ -28,8 +30,6 @@ namespace mcr {
             double lambda;
             double poissonValue;
         public:
-            Poisson() = default;
-
             Poisson(Exponential inputGenerator, double inputParam)
             :   expGenerator(inputGenerator),
                 lambda(inputParam),
