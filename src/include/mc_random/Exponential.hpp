@@ -13,29 +13,27 @@ namespace mcr {
      *  - Grab Uniform random numbers as needed.
      *  - Transform the UPRNG into desired output with unique member function.
      *  - Store as protected variable, output via next() iteration.
-     *
-     *  TODO: Also split this off into its own header. Dependencies getting
-     *  twisted. (2023/10/17)
-     *  TODO: Probably should review copy/move semantics for library.
-     *  (2023/10/17)
-     *  TODO: Add tests for custom seed constuctor. (2023/10/17)
      */
-    class Exponential : public Uniform {
+    class Exponential {
         private:
             constexpr double exponentialTransform(double lambda) {
-                return -log(1 - uniformValue) / lambda;
+                return -log(1 - uniformGenerator.getValue()) / lambda;
             }
         protected:
+            Uniform uniformGenerator;
             double lambda;
             double exponentialValue;
         public:
+            Exponential() {}
+
             explicit Exponential(double inputParam) {
+                Uniform uniformGenerator{ Uniform() };
                 lambda = inputParam;
                 exponentialValue = exponentialTransform(lambda);
             }
 
             explicit Exponential(double inputParam, uint64_t customSeed) {
-                seed = customSeed;
+				Uniform uniformGenerator{ Uniform(customSeed) };
                 lambda = inputParam;
                 exponentialValue = exponentialTransform(lambda);
             }
@@ -43,7 +41,7 @@ namespace mcr {
             constexpr double getValue() { return exponentialValue; }
 
             constexpr double next() {
-                Uniform::next();
+                uniformGenerator.next();
                 exponentialValue = exponentialTransform(lambda);
                 return exponentialValue;
             }

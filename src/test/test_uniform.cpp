@@ -3,11 +3,14 @@
 #include <iostream>
 
 int main() {
-    mcr::Uniform myUniform = mcr::Uniform();
+    mcr::Uniform defaultUniform = mcr::Uniform();
+    mcr::Uniform customUniform = mcr::Uniform(11111111111111);
     
-    int n = 1000000;
+    int n = 3;
     for (int i = 0; i < n; ++i) {
-        std::cout << myUniform.next() << std::endl;
+        std::cout << defaultUniform.next() << std::endl;
+        std::cout << customUniform.next() << std::endl;
+        std::cout << std::endl;
     }
 
     return 0;

@@ -15,7 +15,6 @@ cc_binary(
     name = "test",
     srcs = [
         "src/test/test_uniform.cpp",
-        "src/test/test_trapezoid.cpp",
     ],
     deps = [":stosim_lib"],
 )

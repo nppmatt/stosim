@@ -2,23 +2,27 @@
 #ifndef STOSIM_INCLUDE_MC_RANDOM_INTEGRATEMONTECARLO_H_
 #define STOSIM_INCLUDE_MC_RANDOM_INTEGRATEMONTECARLO_H_
 
+#include "Uniform.hpp"
+
 #include <cstdint>
 #include <vector>
 
 namespace mcr {
     /* Monte Carlo integration based loosely on non-stochastic analogue in numeric header.
      * Parameters:
-     * integFunc    -   The function we would like to approximate via random trials. Uses a template to take in any
-     *                  callable function from outside.
+     * integFunc    -   The function we would like to approximate via random
+     *                  trials. Uses a template to take in any callable
+     *                  function from outside.
      * lowerBound   -   Left bound of integration, or "a".
      * upperBound   -   Right bound of integration, or "b".
      * n            -   Number of trials to perform.
      *
-     * Operates by treating function to integrate as evaluating an expected value.
-     * i.e. theta = E[f(Uniform)] = sum(f(Uniform)) / k; k -> inf. (Simulation, Ross pg. 40)
-     * Depends on Law of Large Numbers, user should be picking a large n for a given function.
+     * Operates by treating function to integrate as evaluating an
+     * expected value.
+     * i.e. theta = E[f(Uniform)] = sum(f(Uniform)) / k; k -> inf.
+     * (Simulation, Ross pg. 40)
+     * Depends on Law of Large Numbers, user should be picking a large enough n.
      *
-     * TODO: Split off into own header. (2023/09/25)
      * TODO: Add template for upper and lower infinity bounds. (2023/09/25)
      * TODO: Cleanup/optimization. (2023/09/25)
      * TODO: Multithreading/concurrency. (2023/09/25)

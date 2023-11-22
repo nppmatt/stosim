@@ -7,31 +7,34 @@
 namespace mcr {
 	/* Our scheme for simulating a Uniform Random Variable U ~ U(1,0):
      *  - Grab a pseudorandom number from the Linear Congruential Generator.
-     *  - Normalize the LCG output by dividing with the largest 64-bit integer (both already explicit-cast to double).
+     *  - Normalize the LCG output by dividing with the largest 64-bit integer
+     *    (both already explicit-cast to double).
      *  - Store as uniformValue.
-     *
-     *  TODO: Add tests for custom seed constuctor. (2023/10/17)
      */
-    class Uniform : public LinearCongruential {
+    class Uniform {
         private:
-            constexpr double normalize(uint64_t value) { return double(value) / double(UINT64_MAX); }
+            constexpr double normalize(uint64_t value) {
+                return double(value) / double(UINT64_MAX);
+            }
         protected:
+            LinearCongruential LCG;
             double uniformValue;
         public:
             Uniform() {
-                uniformValue = normalize(value);
+                LinearCongruential LCG{ LinearCongruential() };
+                uniformValue = normalize(LCG.getValue());
             }
 
             explicit Uniform(uint64_t customSeed) {
-                seed = customSeed;
-                uniformValue = normalize(value);
+                LinearCongruential LCG{ LinearCongruential(customSeed) };
+                uniformValue = normalize(LCG.getValue());
             }
 
             constexpr double getValue() { return uniformValue; }
 
             constexpr double next() {
-                LinearCongruential::next();
-                uniformValue = normalize(value);
+                LCG.next();
+                uniformValue = normalize(LCG.getValue());
                 return uniformValue;
             }
     };

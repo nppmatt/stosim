@@ -4,41 +4,42 @@
 
 #include "Exponential.hpp"
 
-#include <cmath>
-
 namespace mcr {
-    class Poisson : public Exponential {
+    class Poisson {
         private:
             double genPoisson() {
                 uint64_t candidate = 0;
 
                 double elapsed = 0.0;
                 while (elapsed < lambda) {
-                    elapsed += Exponential::next();
+                    elapsed += expGenerator.getValue();
                     ++candidate;
                 }
                 return candidate;
             }
         protected:
+            Exponential expGenerator;
             double lambda;
             double poissonValue;
         public:
-            explicit Poisson(double inputParam)
-            : Exponential(inputParam) {
+            Poisson() {}
+
+            explicit Poisson(double inputParam) {
                 lambda = inputParam;
+                Exponential expGenerator{ Exponential(lambda) };
                 poissonValue = genPoisson();
             }
 
-            explicit Poisson(double inputParam, uint64_t customSeed)
-            : Exponential(inputParam, customSeed) {
-                seed = customSeed;
+            explicit Poisson(double inputParam, uint64_t customSeed) {
                 lambda = inputParam;
+                Exponential expGenerator{ Exponential(lambda, customSeed) };
                 poissonValue = genPoisson();
             }
 
             constexpr double getValue() { return poissonValue; }
 
             double next() {
+                expGenerator.next();
                 poissonValue = genPoisson();
                 return poissonValue;
             }

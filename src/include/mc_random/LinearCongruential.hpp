@@ -5,21 +5,24 @@
 #include <cstdint>
 
 namespace mcr {
-    /* Linear congruential generator that forms the basis for the pseudorandom Uniform generator and therefore the rest
-     * of our library.
+    /* Linear congruential generator that forms the basis for the pseudorandom
+     * Uniform generator and therefore the rest of our library.
      *
-     * Multiplier is based on Donald Knuth's choice for the MMIX virtual machine as its random properties have undergone
-     * years of scrutiny and real-world usage (notably in musl libc) and it has a provably long period (Art of Computer Programming Vol. 2 Ch. 3) relative to our assumed word size of 64-bits.
+     * Multiplier is based on Donald Knuth's choice for the MMIX virtual
+     * machine as its random properties have undergone years of scrutiny and
+     * real-world usage (notably in musl libc) and it has a provably long
+     * period (Art of Computer Programming Vol. 2 Ch. 3) relative to our
+     * assumed word size of 64-bits.
      *
-     * The increment differs from Knuth's choice, and is simply adding 1. This does not change randomness relative to
-     * the original by one bit and keeps things simple.
+     * The increment differs from Knuth's choice, and is simply adding 1.
      * 
-     * The modulus is simply the machine word size, exactly 2^64. This is chosen in order to take advantage of the CPU's
-     * ability to perform mod(2^64) on-the-fly by calculating overflow or wrap-around for unsigned 64-bit integers.
+     * The modulus is the machine word size, exactly 2^64.
+     * This is chosen in order to take advantage of the CPU's
+     * ability to perform mod(2^64) on-the-fly by calculating overflow
+     * or wrap-around for unsigned 64-bit integers.
      *
-     * Our algorithm assumes the usage of a "normal" (Intel/AMD) CPU with SSE2 support (post-year 2000 / Pentium 4).
-     *
-     * TODO: Add tests for custom seed constuctor. (2023/10/17)
+     * This algorithm assumes the usage of a "normal" (Intel/AMD x86-64) CPU 
+     * with SSE2 support (post-year 2000 / Pentium 4).
      */
     class LinearCongruential {
         private:
