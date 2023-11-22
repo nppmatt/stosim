@@ -20,9 +20,17 @@ cc_binary(
 )
 
 cc_binary(
-    name = "hw",
+    name = "hw10",
     srcs = [
         "src/ch8_p10.cpp",
+    ],
+    deps = [":stosim_lib"],
+)
+
+cc_binary(
+    name = "hw13",
+    srcs = [
+        "src/ch8_p13.cpp",
     ],
     deps = [":stosim_lib"],
 )
