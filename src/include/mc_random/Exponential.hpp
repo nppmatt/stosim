@@ -24,19 +24,19 @@ namespace mcr {
             double lambda;
             double exponentialValue;
         public:
-            Exponential() {}
+            Exponential() = default;
 
-            explicit Exponential(double inputParam) {
-                Uniform uniformGenerator{ Uniform() };
-                lambda = inputParam;
-                exponentialValue = exponentialTransform(lambda);
-            }
+            Exponential(double inputParam)
+            :   uniformGenerator( Uniform() ),
+                lambda(inputParam),
+                exponentialValue( exponentialTransform(lambda) )
+            {}
 
-            explicit Exponential(double inputParam, uint64_t customSeed) {
-				Uniform uniformGenerator{ Uniform(customSeed) };
-                lambda = inputParam;
-                exponentialValue = exponentialTransform(lambda);
-            }
+            Exponential(double inputParam, uint64_t customSeed)
+            :   uniformGenerator( Uniform(customSeed) ),
+                lambda(inputParam),
+                exponentialValue( exponentialTransform(lambda) )
+            {}
 
             constexpr double getValue() { return exponentialValue; }
 

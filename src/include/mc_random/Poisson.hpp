@@ -22,19 +22,19 @@ namespace mcr {
             double lambda;
             double poissonValue;
         public:
-            Poisson() {}
+            Poisson() = default;
 
-            explicit Poisson(double inputParam) {
-                lambda = inputParam;
-                Exponential expGenerator{ Exponential(lambda) };
-                poissonValue = genPoisson();
-            }
+            Poisson(double inputParam)
+            :   lambda(inputParam),
+                expGenerator( Exponential(lambda) ),
+                poissonValue( genPoisson() )
+            {}
 
-            explicit Poisson(double inputParam, uint64_t customSeed) {
-                lambda = inputParam;
-                Exponential expGenerator{ Exponential(lambda, customSeed) };
-                poissonValue = genPoisson();
-            }
+            Poisson(double inputParam, uint64_t customSeed)
+            :   lambda(inputParam),
+                expGenerator( Exponential(lambda, customSeed) ),
+                poissonValue( genPoisson() )
+            {}
 
             constexpr double getValue() { return poissonValue; }
 

@@ -4,9 +4,9 @@
 
 int main() {
     mcr::Uniform defaultUniform = mcr::Uniform();
-    mcr::Uniform customUniform = mcr::Uniform(11111111111111);
+    mcr::Uniform customUniform = mcr::Uniform(6911123111);
     
-    int n = 3;
+    int n = 4;
     for (int i = 0; i < n; ++i) {
         std::cout << defaultUniform.next() << std::endl;
         std::cout << customUniform.next() << std::endl;

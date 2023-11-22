@@ -13,22 +13,22 @@ namespace mcr {
      */
     class Uniform {
         private:
-            constexpr double normalize(uint64_t value) {
-                return double(value) / double(UINT64_MAX);
+            constexpr double normalize(uint64_t LCGValue) {
+                return double(LCGValue) / double(UINT64_MAX);
             }
         protected:
             LinearCongruential LCG;
             double uniformValue;
         public:
-            Uniform() {
-                LinearCongruential LCG{ LinearCongruential() };
-                uniformValue = normalize(LCG.getValue());
-            }
+            Uniform()
+            :   LCG( LinearCongruential() ),
+                uniformValue( normalize(LCG.getValue()) )
+            {}
 
-            explicit Uniform(uint64_t customSeed) {
-                LinearCongruential LCG{ LinearCongruential(customSeed) };
-                uniformValue = normalize(LCG.getValue());
-            }
+            Uniform(uint64_t customSeed)
+            :   LCG( LinearCongruential(customSeed) ),
+                uniformValue( normalize(LCG.getValue()) )
+            {}
 
             constexpr double getValue() { return uniformValue; }
 

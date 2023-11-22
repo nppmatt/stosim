@@ -32,15 +32,15 @@ namespace mcr {
             uint64_t seed; 
             uint64_t value;
         public:
-            LinearCongruential() {
-                seed = 31254066; // Some student's ID.
-                value = seed;
-            }
+            LinearCongruential()
+            :   seed(31254066), // Some student's ID.
+                value(seed)
+            {}
 
-            explicit LinearCongruential(uint64_t customSeed) {
-                seed = customSeed;
-                value = seed;
-            }
+            LinearCongruential(uint64_t customSeed)
+            :   seed(customSeed),
+                value(seed)
+            {}
             
             constexpr uint64_t getSeed() { return seed; }
 
