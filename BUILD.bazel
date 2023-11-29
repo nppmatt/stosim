@@ -20,17 +20,65 @@ cc_binary(
 )
 
 cc_binary(
-    name = "hw10",
+    name = "hw1",
     srcs = [
-        "src/ch8_p10.cpp",
+        "src/ch9_p1.cpp",
     ],
     deps = [":stosim_lib"],
 )
 
 cc_binary(
-    name = "hw13",
+    name = "hw2",
     srcs = [
-        "src/ch8_p13.cpp",
+        "src/ch9_p2.cpp",
+    ],
+    deps = [":stosim_lib"],
+)
+
+cc_binary(
+    name = "hw3",
+    srcs = [
+        "src/ch9_p3.cpp",
+    ],
+    deps = [":stosim_lib"],
+)
+
+cc_binary(
+    name = "hw4",
+    srcs = [
+        "src/ch9_p4.cpp",
+    ],
+    deps = [":stosim_lib"],
+)
+
+cc_binary(
+    name = "hw5",
+    srcs = [
+        "src/ch9_p5.cpp",
+    ],
+    deps = [":stosim_lib"],
+)
+
+cc_binary(
+    name = "hw9",
+    srcs = [
+        "src/ch9_p9.cpp",
+    ],
+    deps = [":stosim_lib"],
+)
+
+cc_binary(
+    name = "hw14",
+    srcs = [
+        "src/ch9_p14.cpp",
+    ],
+    deps = [":stosim_lib"],
+)
+
+cc_binary(
+    name = "hw15",
+    srcs = [
+        "src/ch9_p15.cpp",
     ],
     deps = [":stosim_lib"],
 )
