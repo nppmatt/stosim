@@ -5,7 +5,7 @@
 #include "LinearCongruential.hpp"
 
 namespace mcr {
-	/* Our scheme for simulating a Uniform Random Variable U ~ U(1,0):
+    /* Our scheme for simulating a Uniform Random Variable U ~ U(1,0):
      *  - Grab a pseudorandom number from the Linear Congruential Generator.
      *  - Normalize the LCG output by dividing with the largest 64-bit integer
      *    (both already explicit-cast to double).
